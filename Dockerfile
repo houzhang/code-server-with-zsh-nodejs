@@ -1,18 +1,21 @@
-FROM codercom/code-server:latest
+FROM ubuntu:18.04
 
-RUN sudo apt-get update && \
-  sudo apt-get install -y \
+RUN apt-get update && \
+  apt-get install -y \
   curl
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+# install nodejs v10
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 
-RUN sudo apt-get update && \
-  sudo apt-get install -y \
+RUN apt-get update && \
+  apt-get install -y \
   git-core \
   nodejs \
   zsh \
-  wget
+  wget \
+  nginx
 
+# install zsh
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
 
 # start zsh
